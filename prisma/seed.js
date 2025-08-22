@@ -1,4 +1,3 @@
-// prisma/seed.js
 import { PrismaClient } from "@prisma/client";
 import { faker } from "@faker-js/faker";
 
@@ -7,6 +6,7 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("🌱 Seeding database...");
 
+  // Ensure test user exists
   const user = await prisma.user.upsert({
     where: { email: "test@demo.com" },
     update: {},
@@ -16,7 +16,31 @@ async function main() {
     },
   });
 
-  for (let i = 0; i < 100; i++) {
+  // Count how many leads already exist for this user
+  const existingCount = await prisma.lead.count({
+    where: { userId: user.id },
+  });
+
+  const MIN_LEADS = 108;
+  const MAX_LEADS = 150;
+
+  // If already in range, do nothing
+  if (existingCount >= MIN_LEADS && existingCount <= MAX_LEADS) {
+    console.log(`✅ Existing leads ${existingCount} already within range. No new leads added.`);
+    return;
+  }
+
+  // Calculate how many leads to create
+  let leadsToCreate = 0;
+  if (existingCount < MIN_LEADS) {
+    leadsToCreate = MIN_LEADS - existingCount;
+  } else if (existingCount > MAX_LEADS) {
+    console.log(`⚠️ Already ${existingCount} leads, above max ${MAX_LEADS}. No new leads added.`);
+    return;
+  }
+
+  // Create new leads
+  for (let i = 0; i < leadsToCreate; i++) {
     await prisma.lead.create({
       data: {
         first_name: faker.person.firstName(),
@@ -27,19 +51,10 @@ async function main() {
         city: faker.location.city(),
         state: faker.location.state(),
         source: faker.helpers.arrayElement([
-          "website",
-          "facebook_ads",
-          "google_ads",
-          "referral",
-          "events",
-          "other",
+          "website", "facebook_ads", "google_ads", "referral", "events", "other",
         ]),
         status: faker.helpers.arrayElement([
-          "new",
-          "contacted",
-          "qualified",
-          "lost",
-          "won",
+          "new", "contacted", "qualified", "lost", "won",
         ]),
         score: faker.number.int({ min: 0, max: 100 }),
         lead_value: faker.number.float({ min: 100, max: 5000 }),
@@ -49,7 +64,7 @@ async function main() {
     });
   }
 
-  console.log("✅ Seed data created");
+  console.log(`✅ ${leadsToCreate} new leads created. Total leads: ${existingCount + leadsToCreate}`);
 }
 
 main()
