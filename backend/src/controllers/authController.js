@@ -42,7 +42,7 @@ export const login = async (req, res) =>{
     res.cookie("token", token, {httpOnly: true, secure: false});
     res.json({message: "Login succeeful"});
 };
-
+ 
 
 export const logout = (req, res) =>{
     res.clearCookie("token");
