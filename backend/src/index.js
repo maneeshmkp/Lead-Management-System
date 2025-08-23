@@ -5,7 +5,7 @@ import authRoutes from "./routes/auth.js";
 import leadRoutes from "./routes/leads.js";
 
 const app = express();
-
+ 
 app.use(express());
 app.use(cookiesParser());
 app.use(cors({origin: "http://localhost:5173", credentials: true}));
