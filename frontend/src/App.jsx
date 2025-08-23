@@ -1,13 +1,24 @@
+import{ BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Leads from "./pages/Leads";
+import LeadForm from "./pages/LeadForm";
+
 
 import './App.css'
 
 function App() {
+
   return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-      <h1 className="text-5xl font-bold text-white drop-shadow-lg">
-        🚀 Tailwind is working!
-      </h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Leads />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/lead/new" element={<LeadForm />} />
+        <Route path="/lead/:id/edit" element={<LeadForm />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
