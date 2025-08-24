@@ -1,8 +1,12 @@
 import { useState } from "react";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import "../index.css";
 
 export default function Register() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -11,7 +15,11 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/auth/register", { email, password });
+      await axios.post("/auth/register", { 
+        firstName,
+        lastName,
+        email, 
+        password });
       navigate("/login");
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed");
@@ -19,30 +27,60 @@ export default function Register() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-6 border rounded shadow">
-      <h2 className="text-2xl font-bold mb-4">Register</h2>
+    <div className="register-container">
+      <h2 className="register-title">Register Now</h2>
       {error && <p className="text-red-500">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
+
+        <input
+          type="text"
+          autoComplete="given-name"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+          className="form-input"
+        />
+
+        <input
+          type="text"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+          className="form-input"
+        />
+
         <input
           type="email"
           placeholder="Email"
+          autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
         <input
           type="password"
           placeholder="Password"
+           autoComplete="new-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
-        <button type="submit" className="w-full p-2 bg-green-600 text-white rounded">
+        <button type="submit" className="submit-btn">
           Register
         </button>
+
+        <div className="have-account">
+        <h3></h3>
+          Have account? <a href="/login">Sign In</a>
+        </div>
+
       </form>
     </div>
   );
 }
+
+
