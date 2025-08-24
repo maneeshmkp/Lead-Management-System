@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
+import "../index.css";
 
 export default function Login() {
 
@@ -21,9 +22,9 @@ export default function Login() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-6 border rounded shadow">
-      <h2 className="text-2xl font-bold mb-4">Login</h2>
-      {error && <p className="text-red-500">{error}</p>}
+    <div className="card-container">
+      <h2 className="card-title">Login</h2>
+      {error && <p className="error-text">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="email"
@@ -31,7 +32,7 @@ export default function Login() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
         <input
           type="password"
@@ -39,11 +40,17 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
-        <button type="submit" className="w-full p-2 bg-blue-600 text-white rounded">
+        <button type="submit" className="submit-btn">
           Login
         </button>
+
+        <div className="have-account">
+        <h3></h3>
+          Don't have an Account? <a href="/register" className="sign-in">Register Now</a>
+        </div>
+
       </form>
     </div>
   );

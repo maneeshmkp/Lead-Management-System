@@ -27,9 +27,9 @@ export default function Register() {
   };
 
   return (
-    <div className="register-container">
-      <h2 className="register-title">Register Now</h2>
-      {error && <p className="text-red-500">{error}</p>}
+    <div className="card-container">
+      <h2 className="card-title">Register Now</h2>
+      {error && <p className="error-text">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
 
         <input
@@ -75,7 +75,7 @@ export default function Register() {
 
         <div className="have-account">
         <h3></h3>
-          Have account? <a href="/login">Sign In</a>
+          Have account? <a href="/login" className="sign-in">Sign In</a>
         </div>
 
       </form>

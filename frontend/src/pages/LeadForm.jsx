@@ -52,8 +52,8 @@ export default function LeadForm() {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 border rounded shadow">
-      <h2 className="text-2xl font-bold mb-4">{id ? "Edit Lead" : "Create Lead"}</h2>
+    <div className="card-container">
+      <h2 className="card-title">{id ? "Edit Lead" : "Create Lead"}</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           name="first_name"
@@ -61,7 +61,7 @@ export default function LeadForm() {
           value={lead.first_name}
           onChange={handleChange}
           required
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
         <input
           name="last_name"
@@ -69,7 +69,7 @@ export default function LeadForm() {
           value={lead.last_name}
           onChange={handleChange}
           required
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
         <input
           name="email"
@@ -78,48 +78,52 @@ export default function LeadForm() {
           value={lead.email}
           onChange={handleChange}
           required
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
         <input
           name="phone"
           placeholder="Phone"
           value={lead.phone}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
         <input
           name="company"
           placeholder="Company"
           value={lead.company}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
         <input
           name="city"
           placeholder="City"
           value={lead.city}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
         <input
           name="state"
           placeholder="State"
           value={lead.state}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
 
-        <select name="source" value={lead.source} onChange={handleChange} className="w-full p-2 border rounded">
+        <select name="source" value={lead.source} onChange={handleChange} className="leadForm-card">
           <option value="website">Website</option>
           <option value="facebook_ads">Facebook Ads</option>
           <option value="google_ads">Google Ads</option>
           <option value="referral">Referral</option>
           <option value="events">Events</option>
+          <option value="other">Job Board</option>
+          <option value="other">Job Prtal</option>
           <option value="other">Other</option>
         </select>
 
-        <select name="status" value={lead.status} onChange={handleChange} className="w-full p-2 border rounded">
+        <select name="status" value={lead.status} onChange={handleChange} className="leadForm-card">
           <option value="new">New</option>
+          <option value="new">Fresher</option>
+          <option value="new">Experience</option>
           <option value="contacted">Contacted</option>
           <option value="qualified">Qualified</option>
           <option value="lost">Lost</option>
@@ -132,7 +136,7 @@ export default function LeadForm() {
           placeholder="Score"
           value={lead.score}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
         <input
           name="lead_value"
@@ -140,19 +144,21 @@ export default function LeadForm() {
           placeholder="Lead Value"
           value={lead.lead_value}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="form-input"
         />
-        <label className="flex items-center space-x-2">
+        <label className="check_is_qualified">
+         <span className="check_box">Qualified</span>
           <input
             name="is_qualified"
             type="checkbox"
             checked={lead.is_qualified}
             onChange={handleChange}
+            
           />
-          <span>Qualified</span>
+         
         </label>
 
-        <button type="submit" className="w-full p-2 bg-blue-600 text-white rounded">
+        <button type="submit" className="submit-btn">
           {id ? "Update Lead" : "Create Lead"}
         </button>
       </form>

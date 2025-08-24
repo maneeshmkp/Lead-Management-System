@@ -5,7 +5,7 @@
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 2.5;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -71,3 +71,165 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+/* index.css */
+
+.card-container {
+  max-width: 700px;
+  width: 90%;
+  margin: 5rem auto;
+  padding: 2rem;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(203, 14, 14, 0.1);
+  background-color: #eff2f6;
+}
+
+.card-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #1e3a8a; /* Blue */
+}
+
+.error-text {
+  color: #dc2626;
+  margin-bottom: 1rem;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 2rem;
+  border: 2px solid #5821d9; /* Blue border */
+  border-radius: 9px;
+  background-color: #f5f6f5; /* light green */
+  font-size: 1.5rem;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.3);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 2rem;
+  background-color: #8962e2; /* green */
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #5c1af8;
+}
+
+.have-account {
+ font-size: 1.2rem;
+ font-weight: bold;
+}
+
+.sign-in:hover {
+    color: #e4200a;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-title {
+    font-size: 2rem;
+  }
+
+  .form-input {
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .submit-btn {
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .card-container {
+    padding: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .form-input {
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    font-size: 0.95rem;
+    padding: 0.5rem;
+  }
+}
+
+/* design for create LeadForm page */
+.check_is_qualified {
+  font-weight: 650;
+  font-size: 1.25rem;
+}
+
+
+input[type="checkbox"] {
+  /* width: 15px;   
+  height: 15px;   */
+  transform: scale(1.5); 
+  margin-right: 1rem;  
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+
+.leadForm-card{
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 2rem;
+  border: 2px solid #5821d9;
+  border-radius: 0.5rem;
+  background-color: #f5f6f5;
+  font-size: 1.2rem;
+  color: #1f2937;
+  transition: all 0.2s ease;
+}
+
+
+@media (max-width: 768px) {
+  .leadForm-card {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .leadForm-card {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 1rem;
+  }
+}
+
+
+/* Leads.jsx */

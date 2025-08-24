@@ -4,17 +4,20 @@ import prisma from "../prisma.js";
 
 
 export const register = async (req, res) =>{
-    const { email, password } = req.body;
+    const { firstName, lastName, email, password } = req.body;
     const hashed = await bcrypt.hash(password, 10);
 
     try{
         const user = await prisma.user.create({
             data: {
-                email, password: hashed
+                firstName: firstName || "Unknown",   
+                lastName: lastName || "Unknown",   
+                email,
+                password: hashed
             }
         });
 
-        req.status(201).json({message: "User registered", userId: user.id});
+        res.status(201).json({message: "User registered", userId: user.id});
     } catch(err) {
         res.status(400).json({message: "Email already exists"});
     }
