@@ -42,6 +42,13 @@ export const login = async (req, res) =>{
     res.cookie("token", token, {httpOnly: true, secure: false});
     res.json({message: "Login succeeful"});
 };
+
+
+export const me = async (req, res) => {
+  const user = await prisma.user.findUnique({ where: { id: req.user.id } });
+  res.json({ email: user.email });
+};
+
  
 
 export const logout = (req, res) =>{

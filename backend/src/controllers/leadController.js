@@ -46,3 +46,9 @@ export const updateLead = async (req, res) =>{
     });
     res.json(lead);
 };
+
+
+export const deleteLead = async (req, res) => {
+  await prisma.lead.delete({ where: { id: +req.params.id } });
+  res.json({ message: "Deleted" });
+};
