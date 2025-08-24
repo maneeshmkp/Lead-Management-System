@@ -17,6 +17,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/lead/new" element={<LeadForm />} />
         <Route path="/lead/:id/edit" element={<LeadForm />} />
+        <Route path="/leads" element={<Leads />} />
       </Routes>
     </BrowserRouter>
   );
