@@ -1,21 +1,31 @@
-import express from 'express';
-import cookiesParser from "cokie-parser";
+import express from "express";
 import cors from "cors";
-import authRoutes from "./routes/auth.js";
-import leadRoutes from "./routes/leads.js";
+import cookieParser from "cookie-parser";
+import leadRoutes from "./routes/leadRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const app = express();
- 
-app.use(express());
-app.use(cookiesParser());
-app.use(cors({origin: "http://localhost:5173", credentials: true}));
 
-app.use("/auth", authRoutes);
+app.get('/', (req, res) => {
+  res.send('Backend is working!');
+});
+
+
+
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(express.json());
+app.use(cookieParser()); 
+
 app.use("/leads", leadRoutes);
+app.use("/auth", authRoutes);
 
-app.listen(port, () =>{
-    console.log(`Serve at http://localhost:${port}`);
-})
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
 
 
 
